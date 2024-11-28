@@ -20,7 +20,7 @@ Projekt disponuje těmito funkcemi:
    cd DCE-ukol01
    ```
 
-2. Spusťte vývojové prostředí (příkazem nebo spuštěním aplikace):
+2. Spusťte vývojové prostředí (příkazem nebo spuštěním aplikace Docker):
     ```bash
     docker-compose up -d
     ``` 
