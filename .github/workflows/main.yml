@@ -1,0 +1,55 @@
+name: Deploy Project
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  push_to_registries:
+    name: Push Docker image to the ghcr.io registry
+    runs-on: ubuntu-20.04
+    permissions:
+        contents: read
+        packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.6 
+
+      - name: Install Ansible
+        run: |
+          sudo apt update
+          sudo apt install -y ansible 
+
+      - name: SSH Private Key from GitHub Secrets
+        env:
+          PRIVATE_SSH: ${{ secrets.PRIVATE_SSH }}
+        run: |
+          echo "$PRIVATE_SSH" > id_ecdsa
+          chmod 600 id_ecdsa
+
+      - name: SSH Public Key from GitHub Secrets
+        env:
+          PUBLIC_SSH: ${{ secrets.PUBLIC_SSH }}
+        run: |
+          echo "$PUBLIC_SSH" > id_ecdsa.pub
+          chmod 600 id_ecdsa.pub        
+
+      - name: Set permissions
+        run: chmod -R +x .terraform/providers
+
+      - name: Init Terraform
+        run: terraform init
+
+      - name: Plan Terraform
+        run: terraform plan
+
+      - name: Apply Terraform
+        run: terraform apply -auto-approve
+
+      - name: Run Ansible
+        run: ansible-playbook -i ansible/inventory ansible/playbook.yml
