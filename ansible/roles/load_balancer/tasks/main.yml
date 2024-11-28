@@ -5,7 +5,7 @@
 
 - name: Generate NGINX configuration
   template:
-    src: "/home/runner/work/iac-loadbalancer-automation/iac-loadbalancer-automation/ansible/roles/load_balancer/templates/nginx.conf.j2"
+    src: "/home/runner/work/DCE-ukol01/DCE-ukol01/ansible/roles/load_balancer/templates/nginx.conf.j2"
     dest: /tmp/nginx/nginx.conf
 
 - name: Install NGINX webserver in Docker container as Load Balancer
