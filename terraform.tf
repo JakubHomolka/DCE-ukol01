@@ -103,7 +103,6 @@ resource "opennebula_virtual_machine" "loadBalancer" {
   }
 }
 
-# Outputs
 resource "local_file" "inventory" {
   content = templatefile("inventory.tmpl",
     {
