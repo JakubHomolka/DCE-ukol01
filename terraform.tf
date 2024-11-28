@@ -64,6 +64,7 @@ resource "opennebula_virtual_machine" "backend-node" {
       "apt -y upgrade",
      ]
   }
+}
 
 # Load balancer (NGINX)
 resource "opennebula_virtual_machine" "load-balancer" {
