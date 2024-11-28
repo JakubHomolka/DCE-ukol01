@@ -13,11 +13,10 @@ provider "opennebula" {
   password      = "${var.opennebula_password}"
 }
 
-# Configurable backend nodes
-resource "opennebula_virtual_machine" "backend-node" {
+resource "opennebula_virtual_machine" "backend" {
   count        = var.backend_count
   name         = "backend-${count.index + 1}"
-  description  = "Backend Node"
+  description  = "Backend"
   cpu          = 1
   vcpu         = 1
   memory       = 1024
@@ -66,10 +65,9 @@ resource "opennebula_virtual_machine" "backend-node" {
   }
 }
 
-# Load balancer (NGINX)
-resource "opennebula_virtual_machine" "load-balancer" {
-  name         = "nginx-load-balancer"
-  description  = "NGINX Load Balancer"
+resource "opennebula_virtual_machine" "loadBalancer" {
+  name         = "loadBalancer"
+  description  = "Load Balancer - NGINX"
   cpu          = 1
   vcpu         = 1
   memory       = 1024
@@ -106,21 +104,21 @@ resource "opennebula_virtual_machine" "load-balancer" {
 }
 
 # Outputs
-resource "local_file" "ansible_inventory" {
+resource "local_file" "inventory" {
   content = templatefile("inventory.tmpl",
     {
       vm_admin_user = var.vm_admin_user,
-      load_balancer = [opennebula_virtual_machine.load-balancer.ip],
-      backend_nodes = opennebula_virtual_machine.backend-node.*.ip,
+      backends = opennebula_virtual_machine.backend.*.ip,
+      loadBalancer = [opennebula_virtual_machine.loadBalancer.ip],
       ssh_key = var.ssh_key
     })
   filename = "ansible/inventory"
 }
 
-resource "local_file" "nginx_config" {
+resource "local_file" "nginx" {
   content = templatefile("nginx.conf.tmpl",
     {
-      backend_nodes = opennebula_virtual_machine.backend-node.*.ip
+      backends = opennebula_virtual_machine.backend.*.ip
     })
   filename = "ansible/roles/load_balancer/templates/nginx.conf.j2"
 }

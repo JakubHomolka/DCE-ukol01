@@ -1,4 +1,3 @@
-# NGINX Load Balancer Configuration
 worker_processes 1;
 
 events {
@@ -6,8 +5,8 @@ events {
 }
 
 http {
-    upstream backend_servers {
-        %{ for ip in backend_nodes ~}
+    upstream backends {
+        %{ for ip in backends ~}
         server ${ip};
         %{ endfor ~}
     }
@@ -15,7 +14,7 @@ http {
     server {
         listen 80;
         location / {
-            proxy_pass http://backend_servers;
+            proxy_pass http://backends;
         }
     }
 }

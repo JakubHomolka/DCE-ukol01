@@ -1,15 +1,15 @@
-- name: Create a simple index.html file
+- name: Create index.html 
   copy:
     dest: /tmp/index.html
     content: |
       <html>
       <head><title>Backend</title></head>
       <body>
-      <h1>This is Backend Server {{ ansible_host }}</h1>
+      <h1>Server {{ ansible_host }}</h1>
       </body>
       </html>
 
-- name: Run NGINX in Docker
+- name: NGINX in Docker
   docker_container:
     name: backend-nginx
     image: nginx:latest
