@@ -20,10 +20,7 @@ Projekt disponuje těmito funkcemi:
    cd DCE-ukol01
    ```
 
-2. Spusťte vývojové prostředí (příkazem nebo spuštěním aplikace Docker Desktop):
-    ```bash
-    docker-compose up -d
-    ``` 
+2. Spusťte vývojové prostředí (spuštěním aplikace Docker Desktop):
 
 3. Terraform inicializace a aplikace:
     ```bash
