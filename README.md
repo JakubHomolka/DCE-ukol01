@@ -14,7 +14,7 @@ Projekt disponuje těmito funkcemi:
 - **Kontejnery** pomocí Dockeru.
 
 ## Kroky ke spuštění
-1. Klonujte repozitář (např. v příkazové řádce):
+1. Naklonujte repozitář (např. v příkazové řádce):
    ```bash
    git clone https://github.com/JakubHomolka/DCE-ukol01.git
    cd DCE-ukol01
