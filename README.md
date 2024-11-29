@@ -20,16 +20,18 @@ Projekt disponuje těmito funkcemi:
    cd DCE-ukol01
    ```
 
-2. Spusťte vývojové prostředí (spuštěním aplikace Docker Desktop):
+2. Spusťte aplikaci Docker Desktop.
 
-3. Terraform inicializace a aplikace:
+3. Spusťte vývojové prostředí, kde necháte buildnout Docker kontejner.
+
+4. Terraform inicializace a aplikace (v terminálu vývojového prostředí nebo příkazové řádce):
     ```bash
     terraform init
     terraform plan
     terraform apply -auto-approve
     ``` 
 
-4. Konfigurujte s Ansible:
+5. Konfigurujte s Ansible:
     ```bash
     ansible-playbook -i ansible/inventory ansible/playbook.yml
     ```
