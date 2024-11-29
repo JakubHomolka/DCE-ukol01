@@ -24,7 +24,7 @@ Projekt disponuje těmito funkcemi:
 
 3. Spusťte vývojové prostředí, kde necháte buildnout Docker kontejner.
 
-4. Terraform inicializace a aplikace (v terminálu vývojového prostředí nebo příkazové řádce):
+4. Terraform inicializace a spuštění (v terminálu vývojového prostředí nebo příkazové řádce):
     ```bash
     terraform init
     terraform plan
