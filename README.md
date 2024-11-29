@@ -13,8 +13,8 @@ Projekt disponuje těmito funkcemi:
 - **Automatizace** pomocí Terraform a Ansible.
 - **Kontejnery** pomocí Dockeru.
 
-## Kroky ke spuštění v příkazové řádce
-1. Klonujte repozitář:
+## Kroky ke spuštění
+1. Klonujte repozitář (např. v příkazové řádce):
    ```bash
    git clone https://github.com/JakubHomolka/DCE-ukol01.git
    cd DCE-ukol01
